@@ -77,22 +77,40 @@ nav {
 /* Responsive per mobile 📱 */
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
-    height: auto;
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 10px;
+    position: relative;
+    gap: 5px; /* spazio tra logo e link */
   }
 
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 0;
-    align-items: center;
+  .nav-left ul,
+  .nav-right ul {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .logo {
+    position: static;
   }
 
   .logo img {
-    height: 40px;
-    margin: 10px 0;
+    height: 35px;
   }
+
+  nav a {
+    font-size: 0.9rem; /* testo compatto */
+    white-space: nowrap; /* impedisce al testo di andare a capo */
+  }
+
+  .logo-ext {
+    display: none;
+  }
+
 }
 
 .hero {
@@ -128,6 +146,23 @@ nav {
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    margin-top: 450px;  /* meno spazio in alto su mobile */
+    padding: 15px;       /* padding più stretto */
+    text-align: center;  /* centriamo il testo */
+    width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
 }
 
 footer {
@@ -291,36 +326,74 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .schedule table, .schedule thead, .schedule tbody, .schedule th, .schedule td, .schedule tr {
+  .schedule table, 
+  .schedule thead, 
+  .schedule tbody, 
+  .schedule th, 
+  .schedule td, 
+  .schedule tr {
     display: block;
+    width: 100%;
   }
 
-  .schedule thead tr {
+  .schedule thead { 
     display: none;
   }
 
   .schedule tbody tr {
     margin-bottom: 15px;
     border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
   }
 
   .schedule td {
-    padding-left: 50%;
     position: relative;
+    padding: 8px 8px 8px 45%;
+    text-align: left;
+  }
+
+   /* Etichette basate su classi */
+  .schedule td.time::before {
+    content: "Ora";
+  }
+  .schedule td.type::before {
+    content: "Tipo di classe";
   }
 
   .schedule td::before {
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 15px;
-    width: 45%;
+    width: 40%;
     white-space: nowrap;
     font-weight: bold;
+    color: #444;
   }
 
-  .schedule td:nth-of-type(1)::before { content: "Giorno"; }
-  .schedule td:nth-of-type(2)::before { content: "Ora"; }
-  .schedule td:nth-of-type(3)::before { content: "Tipo di classe"; }
+/* ✅ Mantiene visibili i giorni con rowspan */
+.schedule td.day {
+  display: block;
+  background: #fff;
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 1rem;
+}
+
+/* Nasconde eventuali celle vuote di giorno (non serve nel tuo HTML, ma precauzione) */
+.schedule td.day:empty {
+  display: none;
+}
+
+  /* Stile migliorato */
+  .schedule td {
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .schedule td::before {
+    font-size: 0.85rem;
+    color: #777;
+  }
 }
 
 
@@ -432,6 +505,13 @@ td {
 @media (max-width: 768px) {
   .trial-form {
     padding: 60px 5%;
+  }
+
+  .trial-form input,
+  .trial-form textarea,
+  .trial-form button {
+    width: 100%;
+    font-size: 1rem;
   }
 }
 
