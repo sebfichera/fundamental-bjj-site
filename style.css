@@ -25,21 +25,30 @@ nav {
   height: 20px;          /* altezza fissa della navbar */
 }
 
-.nav-links {
+.nav-scroll {
   display: flex;
+  margin-left: auto;         /* spinge i link a destra della navbar */
+}
+
+/* ul dei link */
+.nav-scroll ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   list-style: none;
   gap: 20px;
-  margin-left: auto;         /* spinge i link a destra della navbar */
+  margin: 0;
+  padding: 0;
   font-family: 'Oswald', sans-serif;
 }
 
-.nav-links li a {
+.nav-scroll li a {
   color: #fff;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.nav-links li a:hover {
+.nav-scroll li a:hover {
   color: #1c8ca0;
 }
 
@@ -85,10 +94,26 @@ nav {
     gap: 5px; /* spazio tra logo e link */
   }
 
-  .nav-left ul,
-  .nav-right ul {
+  /* container scorrevole solo per i link */
+  .nav-scroll {
     display: flex;
     gap: 8px;
+    overflow-x: auto;               /* scorrimento orizzontale */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    flex: 1;                        /* occupa lo spazio rimanente accanto al logo */
+  }
+
+  .nav-scroll::-webkit-scrollbar {
+  display: none;
+  }
+
+  /* ul allineato in orizzontale */
+  .nav-scroll ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -96,6 +121,7 @@ nav {
 
   .logo {
     position: static;
+    flex-shrink: 0;
   }
 
   .logo img {
@@ -274,6 +300,19 @@ footer {
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .location-container {
+    flex-direction: column; /* impila testo e mappa */
+    align-items: center;    /* centra orizzontalmente */
+    text-align: center;     /* centra il testo */
+  }
+
+  .location-text h2 {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 .schedule {
@@ -568,6 +607,14 @@ td {
 /* Responsive per mobile */
 @media (max-width: 768px) {
   .location-text .social-icons {
-    justify-content: center; /* centra le icone su mobile */
+    display: flex;               /* da inline-block a flex */
+    justify-content: center;     /* centra le icone */
+    align-items: center;
+    gap: 15px;                   /* mantiene spaziatura */
+    margin-top: 10px;
+  }
+
+  .location-text .social-icons a {
+    font-size: 1.8rem;           /* leggermente più grandi su mobile */
   }
 }
